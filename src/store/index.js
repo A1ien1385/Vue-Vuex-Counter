@@ -3,9 +3,8 @@ import axios from 'axios';
 
 export default createStore({
   state: {
-    counter: 0
-  },
-  getters: {
+    counter: 0,
+    colorCode: 'red'
   },
   mutations: {
       decreaseCounter(state, randomNumber) {
@@ -13,7 +12,9 @@ export default createStore({
       },
       increaseCounter(state, randomNumber) {
        state.counter += randomNumber;
-    
+      },
+      setColorCode(state, newValue) {
+       state.colorCode = newValue;
       }
 
   },
@@ -37,7 +38,15 @@ export default createStore({
         .catch(error => {
           console.error('error: ', error);
         });
-    },       
+    },  
+    setColorCode({commit}, newValue) {
+      commit('setColorCode', newValue)
+    }     
+  },
+  getters: {
+    counterSquared(state) {
+       return state.counter * state.counter;
+    }
   },
   modules: {
   }
